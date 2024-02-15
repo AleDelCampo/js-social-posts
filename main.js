@@ -1,5 +1,4 @@
 /*Descrizione
-Milestone 3 - Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
 BONUS
 Formattare le date in formato italiano (gg/mm/aaaa)
 Gestire l"assenza dell"immagine profilo con un elemento di fallback che contiene le iniziali dell"utente (es. Luca Formicola > LF).
@@ -62,6 +61,12 @@ const posts = [
     }
 ];
 
+function invertDate(date) {
+    const dateElement = date.split("-");
+    return `${dateElement[2]}/${dateElement[1]}/${dateElement[0]}`;
+}
+
+
 function createPost(post) {
     const postElement = document.createElement("div");
     postElement.classList.add("post");
@@ -74,7 +79,7 @@ function createPost(post) {
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${post.author.name}</div>
-                    <div class="post-meta__time">${post.created}</div>
+                    <div class="post-meta__time">${invertDate(post.created)}</div>
                 </div>                    
             </div>
         </div>
@@ -107,10 +112,9 @@ function showPosts() {
         const postElement = createPost(post);
         container.appendChild(postElement);
     });
+    
 }
 showPosts();
-
-
 
 const likedPost = [];
 

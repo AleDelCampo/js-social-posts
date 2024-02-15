@@ -123,3 +123,12 @@ h1 {
     color: #0CD977;
     cursor: default;
 }
+
+.like-button--liked:hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+}
+
+.liked {
+    color: red;
+}

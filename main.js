@@ -1,8 +1,4 @@
-/*Descrizione
-BONUS
-Formattare le date in formato italiano (gg/mm/aaaa)
-Gestire l"assenza dell"immagine profilo con un elemento di fallback che contiene le iniziali dell"utente (es. Luca Formicola > LF).
-Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.*/
+
 const posts = [
     {
         "id": 1,
@@ -43,7 +39,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": "https://unsplash.it/300/300?image=46"
+            "image": "null"
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -69,13 +65,22 @@ function invertDate(date) {
 
 function createPost(post) {
     const postElement = document.createElement("div");
+
     postElement.classList.add("post");
+
+    const initials = post.author.image === "null" && post.id === 4 ?
+    post.author.name.split(' ').map(function(word) {
+        return word.charAt(0);
+    }).join('').toUpperCase() :
+    null;
 
     postElement.innerHTML = `
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${post.author.image}">
+                ${initials ?
+                    `<div class="initials">${initials}</div>` :
+                    `<img class="profile-pic" src="${post.author.image}">`}
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${post.author.name}</div>

@@ -102,7 +102,7 @@ function createPost(post) {
                 </div>
                 <div class="likes__counter">
                     Piace a <b id="like-counter-${post.id}" class="js-likes-counter">${post.likes}</b> persone
-                    <i id="hearth" class="like-icon fas fa-heart"></i>
+                    <i id="heart-${post.id}" class="like-icon fas fa-heart"></i>
                 </div>
             </div> 
         </div>
@@ -135,7 +135,7 @@ function clickLike(like) {
 
     const actualLikes = Number(likeCounter.textContent);
 
-    const heartIcon = document.getElementById("hearth")
+    const heartIcon = document.getElementById(`heart-${postId}`);
 
     if (likedPost.includes(postId)) {
 
